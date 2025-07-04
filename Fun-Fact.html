@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fun FactSMP Slide + Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #b30000;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-position: 0 0, 25px 25px;
+      background-size: 50px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 40px 60px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      font-size: 2.8rem;
+      font-weight: 700;
+      transition: transform 2s ease-in-out;
+      position: relative;
+      z-index: 2;
+    }
+
+    .slide-up {
+      transform: translateY(-300px);
+    }
+
+    .text {
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .text.fade-out {
+      opacity: 0;
+    }
+
+    /* New white box styling */
+    .new-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 50px 80px;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      font-size: 2.5rem;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      pointer-events: none;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      min-width: 420px;
+      max-width: 600px;
+    }
+
+    .new-box.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .new-box h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: white;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 25px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 15px 40px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      color: white;
+      min-width: 140px;
+      user-select: none;
+    }
+
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+
+    .discord-btn {
+      background-color: #5865F2;
+    }
+
+    .discord-btn:hover {
+      background-color: #4752c4;
+    }
+
+    .help-btn {
+      background-color: #43B581;
+    }
+
+    .help-btn:hover {
+      background-color: #359765;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px 30px;
+        font-size: 2rem;
+      }
+      .new-box {
+        padding: 30px 40px;
+        font-size: 1.8rem;
+        min-width: 300px;
+        max-width: 90vw;
+      }
+      .new-box h2 {
+        font-size: 2.2rem;
+      }
+      button {
+        min-width: 120px;
+        font-size: 1.2rem;
+        padding: 12px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="box">
+    <span class="text" id="text">Welcome</span>
+  </div>
+
+  <div class="new-box" id="newBox">
+    <h2>Contact us</h2>
+    <div class="btn-container">
+      <button class="discord-btn" type="button">Discord</button>
+      <button class="help-btn" type="button" id="helpBtn">Help</button>
+    </div>
+  </div>
+
+  <script>
+    const box = document.getElementById('box');
+    const text = document.getElementById('text');
+    const newBox = document.getElementById('newBox');
+    const helpBtn = document.getElementById('helpBtn');
+    const discordBtn = document.querySelector('.discord-btn');
+
+    setTimeout(() => {
+      box.classList.add('slide-up');
+
+      setTimeout(() => {
+        text.classList.add('fade-out');
+
+        setTimeout(() => {
+          text.textContent = "Fun FactSMP";
+          text.classList.remove('fade-out');
+
+          newBox.classList.add('visible');
+        }, 1000);
+      }, 2000);
+    }, 3000);
+
+    helpBtn.addEventListener('click', () => {
+      window.location.href = 'help.html'; // Change to your desired page
+    });
+
+    discordBtn.addEventListener('click', () => {
+      window.open('https://discord.gg/FZpuHEkkCK', '_blank');
+    });
+  </script>
+</body>
+</html>
